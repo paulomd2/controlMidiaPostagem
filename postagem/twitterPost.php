@@ -1,21 +1,22 @@
 <?php
-include './twitter/twitteroauth/autoload.php';
+
+include '../libs/twitter/twitteroauth/autoload.php';
+
 use Abraham\TwitterOAuth\TwitterOAuth;
 
-$consumerKey = 'dXiUbVxc9dEMgfFdGDL2n29Gm';
-$consumerSecret = 'd36QgeNPCFqYypBBBrIclx6qO8qK31uOv9YH1wzYnjHH1nEqrF';
-$mensagem = "Example tweet";
-$imagem = "http://agenciamd2.com.br/img/logomd2.png";
-//$imagem = "../uploads/";
+function twitterPost($texto, $imagem, $oauthToken, $oauthTokenSecret) {
+    include_once './twitter/twitteroauth/autoload.php';
 
-$connection = new TwitterOAuth($consumerKey, $consumerSecret,$token, $verificador);
+    $consumerKey = 'dXiUbVxc9dEMgfFdGDL2n29Gm';
+    $consumerSecret = 'd36QgeNPCFqYypBBBrIclx6qO8qK31uOv9YH1wzYnjHH1nEqrF';
 
-$media = $connection->upload('media/upload', array('media' => $imagem));
-$parameters = array(
-    'status' => $mensagem,
-    'media_ids' => $media->media_id_string
-);
+    $connection = new TwitterOAuth($consumerKey, $consumerSecret, $oauthToken, $oauthTokenSecret);
 
-$result = $connection->post('statuses/update', $parameters);
+    $media = $connection->upload('media/upload', array('media' => $imagem));
+    $parameters = array(
+        'status' => $texto,
+        'media_ids' => $media->media_id_string
+    );
 
-var_dump($result);
+    $result = $connection->post('statuses/update', $parameters);
+}
