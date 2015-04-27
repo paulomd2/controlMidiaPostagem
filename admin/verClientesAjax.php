@@ -8,6 +8,9 @@ foreach ($clientes as $cliente){
             <td><img src="../upload/'.$cliente["logo"].'" width="100" /></td>
             <td>'.$cliente["cor1"].'</td>
             <td>'.$cliente["cor2"].'</td>
+            <td><a href="loginInstagram.php?id='.$cliente["idCliente"].'" />Instagram</a></td>
+            <td><a href="loginTwitter.php?id='.$cliente["idCliente"].'" />Twitter</a></td>
+            <td><a href="loginFacebook.php?id='.$cliente["idCliente"].'" />Facebook</a></td>
             <td><a href="altCliente.php?id='.$cliente["idCliente"].'">Alterar</a></td>
             <td><a href="javascript:delCliente('.$cliente["idCliente"].')">Excluir</a></td>
           </tr>

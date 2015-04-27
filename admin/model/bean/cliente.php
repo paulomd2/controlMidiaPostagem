@@ -1,8 +1,11 @@
 <?php
+
 @include_once '../../include/funcoes.php';
 @include_once '../include/funcoes.php';
 @include_once 'include/funcoes.php';
-class Cliente{
+
+class Cliente {
+
     private $idCliente;
     private $nome;
     private $logo;
@@ -10,62 +13,81 @@ class Cliente{
     private $cor2;
     private $pasta;
     private $dataCadastro;
-    
-    
-    public function getIdCliente(){
+    private $loginRede;
+    private $senhaRede;
+
+    public function getIdCliente() {
         return $this->idCliente;
     }
-    public function setIdCliente($idCliente){
+
+    public function setIdCliente($idCliente) {
         $this->idCliente = seg($idCliente);
     }
-    
-    
-    public function getNome(){
+
+    public function getNome() {
         return $this->nome;
     }
-    public function setNome($nome){
+
+    public function setNome($nome) {
         $this->nome = seg($nome);
     }
-    
-    
-    public function getLogo(){
+
+    public function getLogo() {
         return $this->logo;
     }
-    public function setLogo($logo){
+
+    public function setLogo($logo) {
         $this->logo = seg($logo);
     }
-    
-    
-    public function getCor1(){
+
+    public function getCor1() {
         return $this->cor1;
     }
-    public function setCor1($cor){
+
+    public function setCor1($cor) {
         $this->cor1 = seg($cor);
     }
-    
-    
-    public function getCor2(){
+
+    public function getCor2() {
         return $this->cor2;
     }
-    public function setCor2($cor){
+
+    public function setCor2($cor) {
         $this->cor2 = seg($cor);
     }
-    
-    
-    public function getPasta(){
+
+    public function getPasta() {
         return $this->pasta;
     }
-    public function setPasta($pasta){
+
+    public function setPasta($pasta) {
         $this->pasta = seg($pasta);
     }
-    
-    
-    public function getDataCadastro(){
+
+    public function getDataCadastro() {
         return $this->dataCadastro;
     }
-    public function setDataCadastro($dataCadastro){
+
+    public function setDataCadastro($dataCadastro) {
         $this->dataCadastro = seg($dataCadastro);
     }
+
+    public function getLoginRede() {
+        return $this->loginRede;
+    }
+
+    public function setLoginRede($login) {
+        $this->loginRede = seg($login);
+    }
+
+    public function getSenhaRede() {
+        return $this->senhaRede;
+    }
+
+    public function setSenhaRede($senha) {
+        $this->senhaRede = seg($senha);
+    }
+
 }
 
 $objCliente = new Cliente();

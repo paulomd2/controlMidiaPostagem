@@ -11,12 +11,15 @@
                 <td>Logo</td>
                 <td>Cor 1</td>
                 <td>Cor 2</td>
+                <td>Instagram</td>
+                <td>Twitter</td>
+                <td>Facebook</td>
                 <td>Alterar</td>
                 <td>Excluir</td>
             </tr>
         <tbody id="listaClientes">
             <?php
-                include_once 'verClientesAjax.php';
+            include_once 'verClientesAjax.php';
             ?>
         </tbody>
 

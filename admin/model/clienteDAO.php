@@ -77,6 +77,19 @@ class ClienteDAO extends Banco {
 
         $this->fechaConexao();
     }
+    
+    
+    public function cadTwitter(Cliente $objCliente){
+        $conexao = $this->abreConexao();
+        
+        $sql = "UPDATE ".TBL_CLIENTE." SET
+                tokenTwitter = '".$objCliente->getLoginRede()."',
+                secretTwitter =  '".$objCliente->getSenhaRede()."'
+                    WHERE idCliente = ".$objCliente->getIdCliente()."
+               ";
+        
+        $conexao->query($sql);
+    }
 
 }
 
