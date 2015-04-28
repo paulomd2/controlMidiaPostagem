@@ -36,29 +36,14 @@ function login() {
     );
 }
 function checkLoginState() {
-    userid = '';
-    accessToken = '';
-
     FB.getLoginStatus(function (response) {
         if (response.status !== 'connected') {
             login();
         } else {
-            userid = response.authResponse.userID;
-            accessToken = response.authResponse.accessToken;
+            var userId = response.authResponse.userID;
+            var accessToken = response.authResponse.accessToken;
 
-            console.log('ID: ' + userid + ' token: ' + accessToken);
-
-
-            return response.authResponse.accessToken;
-        }
-    });
-
-    FB.api("/{page-id}",
-    function (response) {
-        console.log(response);
-        
-        if (response && !response.error) {
-            /* handle the result */
+            listaPaginas(userId, accessToken)
         }
     });
 
@@ -66,6 +51,40 @@ function checkLoginState() {
 
 function logout() {
     FB.logout(function (response) {
-        // user is now logged out
     });
+}
+
+function listaPaginas(userId, accessToken) {
+    FB.api(
+        "/" + userId + '/accounts',
+        function (response) {
+            console.log(response.data);
+            var teste = response.data;
+
+            teste.forEach(function (pages) {
+                var pageAccessToken = pages.access_token;
+                var pageId = pages.id;
+                var pageName = pages.name;
+
+                postaPagina(pageId, pageAccessToken)
+            });
+        }
+    );
+
+}
+
+function postaPagina(pageId, accessToken) {
+    console.log('chegou');
+    FB.api(
+            "/"+pageId+"/feed",
+            "POST",
+            {
+                "message": "This is a test message"
+            },
+    function (response) {
+        if (response && !response.error) {
+            console.log(response)
+        }
+    }
+    );
 }

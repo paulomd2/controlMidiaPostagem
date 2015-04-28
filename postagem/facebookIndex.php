@@ -12,7 +12,7 @@ and open the template in the editor.
     <body>
         <script src="js/facebookLogin.js"></script>
 
-    <fb:login-button scope="public_profile,email,manage_pages,publish_actions" onlogin="checkLoginState();">
+    <fb:login-button scope="public_profile,email,manage_pages,publish_actions,publish_pages" onlogin="checkLoginState();">
     </fb:login-button>
 
     <a href="javascript:logout();"> Deslogar </a>
