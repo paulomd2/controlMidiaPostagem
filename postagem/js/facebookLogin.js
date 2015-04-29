@@ -56,27 +56,35 @@ function logout() {
 
 function listaPaginas(userId, accessToken) {
     FB.api(
-        "/" + userId + '/accounts',
-        function (response) {
-            console.log(response.data);
-            var teste = response.data;
+            "/" + userId + '/accounts',
+            function (response) {
+                console.log(response.data);
+                var teste = response.data;
+                var elemento = '';
+                teste.forEach(function (pages) {
+                    var pageAccessToken = pages.access_token;
+                    var pageId = pages.id;
+                    var pageName = pages.name;
 
-            teste.forEach(function (pages) {
-                var pageAccessToken = pages.access_token;
-                var pageId = pages.id;
-                var pageName = pages.name;
-
-                postaPagina(pageId, pageAccessToken)
-            });
-        }
+                    //se o usuário for administrador da página
+                    //ele poderá adiciona-la
+                    if (pages.perms.indexOf('ADMINISTER') >= 0) {
+                        elemento = '<a href="javascript:gravaPagina(\'' + pageId + '\',\'' + pageAccessToken + '\')"> ' + pageName + '</a>';
+//                        elemento += '<a href="javascript:alert(\'Vamos fazer de conta que algo aconteceu!\')"> ' + pageName + '</a>';
+                    } else {
+                        //se não, vai precisar de nível de administração
+                        elemento += '<a href="javascript:alert(\'Voce não é administrador dessa página!\')"> ' + pageName + '</a>';
+                    }
+                });
+                $("#status").html(elemento);
+            }
     );
-
 }
 
 function postaPagina(pageId, accessToken) {
     console.log('chegou');
     FB.api(
-            "/"+pageId+"/feed",
+            "/" + pageId + "/feed",
             "POST",
             {
                 "message": "This is a test message"
@@ -87,4 +95,15 @@ function postaPagina(pageId, accessToken) {
         }
     }
     );
+}
+
+function gravaPagina(pageId, pageAccessToken){
+//    var idCliente = $("#idCliente").val();
+    var idCliente = 5;
+    
+    //$.post('control/clienteControle.php',{opcao:'cadFacebook',idCliente:idCliente, pageId:pageId, pageToken:pageAccessToken},
+    $.post('../admin/control/clienteControle.php',{opcao:'cadFacebook',idCliente:idCliente, pageId:pageId, pageToken:pageAccessToken},
+    function(r){
+        console.log(r);
+    });
 }

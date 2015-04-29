@@ -8,6 +8,7 @@ and open the template in the editor.
     <head>
         <meta charset="utf-8">
         <title></title>
+        <script src="../js/jquery-2.1.3.js"></script>
     </head>
     <body>
         <script src="js/facebookLogin.js"></script>
@@ -15,7 +16,7 @@ and open the template in the editor.
     <fb:login-button scope="public_profile,email,manage_pages,publish_actions,publish_pages" onlogin="checkLoginState();">
     </fb:login-button>
 
-    <a href="javascript:logout();"> Deslogar </a>
+    <a href="javascript:logout();"> Deslogar </a><br /><br />
 
     <div id="status">
     </div>

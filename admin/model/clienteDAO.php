@@ -90,6 +90,19 @@ class ClienteDAO extends Banco {
         
         $conexao->query($sql);
     }
+    
+    
+    public function cadFacebook(Cliente $objCliente){
+        $conexao = $this->abreConexao();
+        
+        $sql = "UPDATE ".TBL_CLIENTE." SET
+                pageIdFacebook = '".$objCliente->getLoginRede()."',
+                pageAccessTokenFacebook =  '".$objCliente->getSenhaRede()."'
+                    WHERE idCliente = ".$objCliente->getIdCliente()."
+               ";
+        
+        $conexao->query($sql);
+    }
 
 }
 

@@ -87,6 +87,18 @@ switch ($opcao) {
         
         header('Location: ../verClientes.php');
         break;
+    
+    case 'cadFacebook':
+        $pageId = $_POST['pageId'];
+        $pageToken = $_POST['pageToken'];
+        $idCliente = $_POST['idCliente'];
+        
+        $objCliente->setLoginRede($pageId);
+        $objCliente->setSenhaRede($pageToken);
+        $objCliente->setIdCliente($idCliente);
+        
+        $objClienteDao->cadFacebook($objCliente);
+        break;
 }
 
 function uploadImagem() {
